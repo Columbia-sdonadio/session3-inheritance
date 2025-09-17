@@ -1,0 +1,21 @@
+name: C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install g++
+        run: sudo apt-get install g++ -y
+
+      - name: Compile main
+        run: g++ -std=c++17 -o main main.cpp
+
+      - name: Compile tests
+        run: g++ -std=c++17 -o test test.cpp
+
+      - name: Run tests
+        run: ./test
